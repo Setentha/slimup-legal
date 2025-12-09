@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slim Up! — Exclusão de Conta e Dados</title>
+
+  <!-- Fonte Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #0048FF;
+      --primary-soft: #e3ecff;
+      --bg: #f5f7fb;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --card-radius: 16px;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      background: linear-gradient(135deg, #0048FF, #3b82f6);
+      padding: 18px 20px 72px;
+      color: #ffffff;
+    }
+
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+    }
+
+    .brand img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    /* Seletor de idioma */
+    .lang-select {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+      font-size: 14px;
+      color: #111827;
+    }
+
+    .lang-select span.globe {
+      font-size: 16px;
+    }
+
+    .lang-select select {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      color: #111827;
+      outline: none;
+      cursor: pointer;
+      padding-right: 4px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .lang-select option {
+      color: #111827;
+      background: #ffffff;
+    }
+
+    .hero-text {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-text h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-text p {
+      margin: 0;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: -40px auto 40px;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      padding: 24px 24px 16px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    ul {
+      padding-left: 18px;
+      margin-top: 6px;
+      margin-bottom: 14px;
+    }
+
+    li {
+      margin-bottom: 4px;
+    }
+
+    strong {
+      color: var(--text);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 16px 0 24px;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 16px 56px;
+      }
+
+      .hero-text h1 {
+        font-size: 22px;
+      }
+
+      .card {
+        padding: 20px 16px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="top-bar">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo Slim Up!">
+      </div>
+
+      <div class="lang-select">
+        <span class="globe">🌎</span>
+        <select id="langSelector">
+          <option value="pt">🇧🇷 Português</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="es">🇪🇸 Español</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="hero-text">
+      <h1 id="title"></h1>
+      <p id="subtitle"></p>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <div class="card">
+    <h2 id="section_how"></h2>
+    <p id="how_intro"></p>
+    <ul id="how_list"></ul>
+
+    <h2 id="section_data"></h2>
+    <p id="data_intro"></p>
+    <ul id="data_list"></ul>
+    <p id="data_extra"></p>
+
+    <h2 id="section_time"></h2>
+    <p id="time_text"></p>
+
+    <h2 id="section_contact"></h2>
+    <p id="contact_text"></p>
+  </div>
+</div>
+
+<footer id="footer"></footer>
+
+<script>
+  const content = {
+    pt: {
+      title: "Slim Up! — Exclusão de Conta e Dados",
+      subtitle: "Saiba como solicitar a exclusão da sua conta e dos dados associados ao aplicativo Slim Up!.",
+      section_how: "Como solicitar a exclusão da conta",
+      how_intro:
+        "No momento, a exclusão da conta do Slim Up! é feita mediante solicitação por e-mail. Para pedir a exclusão, siga os passos abaixo:",
+      how_list: [
+        "Envie um e-mail para <strong>apps@setentha.com</strong> a partir do endereço de e-mail usado no app.",
+        "No assunto, informe: <strong>“Exclusão de conta Slim Up”</strong>.",
+        "No corpo da mensagem, inclua:<ul><li>O e-mail utilizado para login no Slim Up!;</li><li>Seu nome completo (opcional);</li><li>Uma frase simples confirmando que deseja excluir sua conta e os dados associados.</li></ul>"
+      ],
+      section_data: "Dados que serão excluídos",
+      data_intro: "Ao concluir o processo de exclusão, serão removidos dos nossos sistemas:",
+      data_list: [
+        "Informações da conta (e-mail de login);",
+        "Credenciais de autenticação (senha);",
+        "Preferências e configurações associadas à conta;",
+        "Metas e registros armazenados no perfil do usuário, quando aplicável."
+      ],
+      data_extra:
+        "Alguns registros poderão ser mantidos por tempo adicional quando necessário para cumprimento de obrigações legais, prevenção a fraudes ou requisitos de auditoria.",
+      section_time: "Prazos de processamento",
+      time_text:
+        "Os pedidos de exclusão são analisados e processados em até <strong>7 dias úteis</strong> após o recebimento do e-mail de solicitação. Você receberá uma confirmação quando o processo for concluído.",
+      section_contact: "Contato",
+      contact_text:
+        'Em caso de dúvidas sobre a exclusão de conta ou sobre o tratamento de dados pessoais, entre em contato pelo e-mail: <strong>apps@setentha.com</strong>.',
+      footer: "Slim Up! — © 2025 Setentha Technologies. Todos os direitos reservados."
+    },
+
+    en: {
+      title: "Slim Up! — Account and Data Deletion",
+      subtitle: "Learn how to request deletion of your account and associated data from the Slim Up! app.",
+      section_how: "How to request account deletion",
+      how_intro:
+        "At this time, account deletion for Slim Up! is handled upon request via e-mail. To request deletion, please follow the steps below:",
+      how_list: [
+        "Send an e-mail to <strong>apps@setentha.com</strong> from the same address used to log in to the app.",
+        "Use the subject line: <strong>“Slim Up account deletion”</strong>.",
+        "In the body of the message, include:<ul><li>The e-mail address you use to log in to Slim Up!;</li><li>Your full name (optional);</li><li>A short statement confirming that you want your account and associated data to be deleted.</li></ul>"
+      ],
+      section_data: "Data that will be deleted",
+      data_intro: "When the deletion process is completed, the following data will be removed from our systems:",
+      data_list: [
+        "Account information (login e-mail);",
+        "Authentication credentials (password);",
+        "Preferences and settings associated with the account;",
+        "Goals and records stored in the user profile, when applicable."
+      ],
+      data_extra:
+        "Some records may be retained for an additional period when necessary to comply with legal obligations, prevent fraud or meet audit requirements.",
+      section_time: "Processing time",
+      time_text:
+        "Deletion requests are reviewed and processed within <strong>7 business days</strong> after we receive your e-mail. You will receive a confirmation once the process is complete.",
+      section_contact: "Contact",
+      contact_text:
+        'If you have any questions about account deletion or how we handle personal data, please contact us at: <strong>apps@setentha.com</strong>.',
+      footer: "Slim Up! — © 2025 Setentha Technologies. All rights reserved."
+    },
+
+    es: {
+      title: "Slim Up! — Eliminación de Cuenta y Datos",
+      subtitle: "Conozca cómo solicitar la eliminación de su cuenta y de los datos asociados a la aplicación Slim Up!.",
+      section_how: "Cómo solicitar la eliminación de la cuenta",
+      how_intro:
+        "Por el momento, la eliminación de cuentas de Slim Up! se realiza previa solicitud por correo electrónico. Para pedir la eliminación, siga estos pasos:",
+      how_list: [
+        "Envíe un correo electrónico a <strong>apps@setentha.com</strong> desde la misma dirección utilizada en la app.",
+        "En el asunto, escriba: <strong>“Eliminación de cuenta Slim Up”</strong>.",
+        "En el cuerpo del mensaje, incluya:<ul><li>El correo electrónico que utiliza para iniciar sesión en Slim Up!;</li><li>Su nombre completo (opcional);</li><li>Una frase breve confirmando que desea eliminar su cuenta y los datos asociados.</li></ul>"
+      ],
+      section_data: "Datos que se eliminarán",
+      data_intro: "Al finalizar el proceso de eliminación, se eliminarán de nuestros sistemas los siguientes datos:",
+      data_list: [
+        "Información de la cuenta (correo electrónico de acceso);",
+        "Credenciales de autenticación (contraseña);",
+        "Preferencias y configuraciones asociadas a la cuenta;",
+        "Metas y registros almacenados en el perfil del usuario, cuando corresponda."
+      ],
+      data_extra:
+        "Algunos registros pueden conservarse por un período adicional cuando sea necesario para cumplir obligaciones legales, prevenir fraudes o atender requisitos de auditoría.",
+      section_time: "Plazos de procesamiento",
+      time_text:
+        "Las solicitudes de eliminación se revisan y procesan en un plazo de hasta <strong>7 días hábiles</strong> a partir de la recepción del correo electrónico. Recibirá una confirmación cuando el proceso haya concluido.",
+      section_contact: "Contacto",
+      contact_text:
+        'Si tiene dudas sobre la eliminación de la cuenta o sobre el tratamiento de datos personales, póngase en contacto a través del correo: <strong>apps@setentha.com</strong>.',
+      footer: "Slim Up! — © 2025 Setentha Technologies. Todos los derechos reservados."
+    }
+  };
+
+  function applyLanguage(lang) {
+    const t = content[lang];
+
+    document.getElementById("title").innerHTML = t.title;
+    document.getElementById("subtitle").innerHTML = t.subtitle;
+    document.getElementById("section_how").innerText = t.section_how;
+    document.getElementById("how_intro").innerHTML = t.how_intro;
+
+    const howList = document.getElementById("how_list");
+    howList.innerHTML = "";
+    t.how_list.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = item;
+      howList.appendChild(li);
+    });
+
+    document.getElementById("section_data").innerText = t.section_data;
+    document.getElementById("data_intro").innerHTML = t.data_intro;
+
+    const dataList = document.getElementById("data_list");
+    dataList.innerHTML = "";
+    t.data_list.forEach(item => {
+      const li = document.createElement("li");
+      li.innerHTML = item;
+      dataList.appendChild(li);
+    });
+
+    document.getElementById("data_extra").innerHTML = t.data_extra;
+    document.getElementById("section_time").innerText = t.section_time;
+    document.getElementById("time_text").innerHTML = t.time_text;
+    document.getElementById("section_contact").innerText = t.section_contact;
+    document.getElementById("contact_text").innerHTML = t.contact_text;
+    document.getElementById("footer").innerHTML = t.footer;
+  }
+
+  const selector = document.getElementById("langSelector");
+
+  selector.addEventListener("change", () => {
+    const lang = selector.value;
+    applyLanguage(lang);
+    localStorage.setItem("slimup_delete_lang", lang);
+  });
+
+  const savedLang = localStorage.getItem("slimup_delete_lang") || navigator.language.slice(0,2);
+  const initialLang = ["pt","en","es"].includes(savedLang) ? savedLang : "pt";
+  selector.value = initialLang;
+  applyLanguage(initialLang);
+</script>
+
+</body>
+</html>
