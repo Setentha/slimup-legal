@@ -4,62 +4,128 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Slim Up! — Documentos Legais</title>
+
+  <!-- Fonte Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --primary: #0048FF;
+      --primary-soft: #e3ecff;
+      --bg: #f5f7fb;
+      --text: #1f2933;
+      --muted: #6b7280;
+      --card-radius: 16px;
+      --shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background: #f7f9fa;
-      color: #333;
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
     }
 
     header {
-      background: #2a7f6b;
-      padding: 30px 20px;
+      background: linear-gradient(135deg, #0048FF, #3b82f6);
+      padding: 32px 20px 72px;
       text-align: center;
-      color: white;
+      color: #ffffff;
     }
 
-    h1 {
+    .logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 16px;
+      gap: 12px;
+    }
+
+    .logo-wrap img {
+      height: 56px;
+      width: auto;
+      display: block;
+    }
+
+    header h1 {
       margin: 0;
-      font-size: 28px;
-      font-weight: 600;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    header p {
+      margin: 10px 0 0;
+      font-size: 15px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.95;
+    }
+
+    .wrapper {
+      max-width: 960px;
+      margin: -40px auto 40px;
+      padding: 0 16px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: var(--card-radius);
+      box-shadow: var(--shadow);
+      padding: 24px 24px 12px;
     }
 
     h2 {
-      color: #2a7f6b;
       margin-top: 0;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
+      margin-top: 18px;
+      font-size: 14px;
     }
 
     th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #e0e0e0;
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
       text-align: left;
     }
 
     th {
-      background: #f0f5f4;
-      color: #2a7f6b;
-      font-weight: bold;
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .lang {
+      font-weight: 600;
+      color: var(--text);
     }
 
     a {
-      color: #2a7f6b;
+      color: var(--primary);
       text-decoration: none;
       font-weight: 600;
     }
@@ -68,51 +134,83 @@
       text-decoration: underline;
     }
 
+    .section {
+      margin-top: 24px;
+    }
+
+    .section ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+
+    .section li {
+      margin-bottom: 4px;
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
-      color: #666;
-      font-size: 14px;
-      margin-top: 40px;
+      font-size: 13px;
+      color: var(--muted);
+      margin: 16px 0 24px;
     }
   </style>
 </head>
 <body>
 
 <header>
+  <div class="logo-wrap">
+    <img src="logo.svg" alt="Logo Slim Up!">
+  </div>
   <h1>Slim Up! — Documentos Legais</h1>
+  <p>Páginas oficiais de Política de Privacidade e Termos de Uso utilizadas pelo aplicativo Slim Up!.</p>
 </header>
 
-<div class="container">
-  <h2>Política de Privacidade & Termos de Uso</h2>
+<div class="wrapper">
+  <div class="card">
+    <h2>Documentos disponíveis</h2>
+    <p>Selecione abaixo o idioma desejado para acessar a Política de Privacidade e os Termos de Uso.</p>
 
-  <p>
-    Abaixo você encontra os documentos oficiais utilizados pelo aplicativo <strong>Slim Up!</strong> para fins legais
-    e de conformidade com as lojas de aplicativos.
-  </p>
+    <table>
+      <tr>
+        <th>Idioma</th>
+        <th>Política de Privacidade</th>
+        <th>Termos de Uso</th>
+      </tr>
+      <tr>
+        <td class="lang">🇧🇷 Português (Brasil)</td>
+        <td><a href="privacy.html">privacy.html</a></td>
+        <td><a href="terms.html">terms.html</a></td>
+      </tr>
+      <tr>
+        <td class="lang">🇺🇸 English</td>
+        <td><a href="privacy-en.html">privacy-en.html</a></td>
+        <td><a href="terms-en.html">terms-en.html</a></td>
+      </tr>
+      <tr>
+        <td class="lang">🇪🇸 Español</td>
+        <td><a href="privacy-es.html">privacy-es.html</a></td>
+        <td><a href="terms-es.html">terms-es.html</a></td>
+      </tr>
+    </table>
 
-  <table>
-    <tr>
-      <th>Idioma</th>
-      <th>Política de Privacidade</th>
-      <th>Termos de Uso</th>
-    </tr>
-    <tr>
-      <td>🇧🇷 Português (Brasil)</td>
-      <td><a href="privacy.html">privacy.html</a></td>
-      <td><a href="terms.html">terms.html</a></td>
-    </tr>
-    <tr>
-      <td>🇺🇸 English</td>
-      <td><a href="privacy-en.html">privacy-en.html</a></td>
-      <td><a href="terms-en.html">terms-en.html</a></td>
-    </tr>
-    <tr>
-      <td>🇪🇸 Español</td>
-      <td><a href="privacy-es.html">privacy-es.html</a></td>
-      <td><a href="terms-es.html">terms-es.html</a></td>
-    </tr>
-  </table>
+    <div class="section">
+      <h2>Sobre o Slim Up!</h2>
+      <p>O Slim Up! é um aplicativo voltado ao bem-estar, ajudando o usuário a:</p>
+      <ul>
+        <li>Organizar a ingestão diária de líquidos;</li>
+        <li>Programar pausas para relaxamento;</li>
+        <li>Definir lembretes para exercícios físicos.</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Contato</h2>
+      <p>
+        Dúvidas ou solicitações relacionadas aos documentos legais podem ser encaminhadas para:<br />
+        <strong>apps@setentha.com</strong>
+      </p>
+    </div>
+  </div>
 </div>
 
 <footer>
