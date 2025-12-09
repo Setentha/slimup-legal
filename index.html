@@ -33,41 +33,103 @@
       color: var(--text);
     }
 
+    /* HEADER / HERO */
+
     header {
       background: linear-gradient(135deg, #0048FF, #3b82f6);
-      padding: 32px 20px 72px;
-      text-align: center;
+      padding: 18px 20px 72px;
       color: #ffffff;
-      position: relative;
     }
 
-    /* Language Selector */
-    .lang-select {
-      position: absolute;
-      top: 16px;
-      right: 20px;
-      background: rgba(255,255,255,0.2);
-      backdrop-filter: blur(6px);
-      padding: 6px 12px;
-      border-radius: 8px;
-      color: white;
-      font-size: 14px;
-      cursor: pointer;
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
     }
 
-    select {
-      background: transparent;
-      border: none;
-      color: white;
-      font-size: 14px;
-      outline: none;
-      cursor: pointer;
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
     }
 
-    .logo-wrap img {
-      height: 56px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand img {
+      height: 40px;
       width: auto;
     }
+
+    .brand-name {
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    /* Seletor de idioma */
+
+    .lang-select {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 999px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.18);
+      font-size: 14px;
+      color: #111827;
+    }
+
+    .lang-select span.globe {
+      font-size: 16px;
+    }
+
+    .lang-select select {
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      font-size: 14px;
+      color: #111827;          /* ✅ texto escuro no dropdown */
+      outline: none;
+      cursor: pointer;
+      padding-right: 4px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
+    .lang-select option {
+      color: #111827;          /* ✅ opções visíveis ao abrir */
+      background: #ffffff;
+    }
+
+    .hero-text {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .hero-text h1 {
+      margin: 0 0 6px;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-text p {
+      margin: 0;
+      font-size: 15px;
+      color: #ffffff;          /* ✅ texto totalmente branco */
+    }
+
+    /* CONTEÚDO PRINCIPAL */
 
     .wrapper {
       max-width: 960px;
@@ -78,8 +140,21 @@
     .card {
       background: #ffffff;
       border-radius: var(--card-radius);
-      padding: 24px;
       box-shadow: var(--shadow);
+      padding: 24px 24px 12px;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--muted);
     }
 
     table {
@@ -92,11 +167,52 @@
     th, td {
       padding: 10px 12px;
       border-bottom: 1px solid #e5e7eb;
+      text-align: left;
     }
 
     th {
       background: var(--primary-soft);
       color: var(--primary);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .lang-label {
+      font-weight: 600;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .lang-flag {
+      font-size: 16px;
+    }
+
+    a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section ul {
+      padding-left: 18px;
+      margin-top: 8px;
+    }
+
+    .section li {
+      margin-bottom: 4px;
     }
 
     footer {
@@ -105,28 +221,67 @@
       color: var(--muted);
       margin: 16px 0 24px;
     }
+
+    /* RESPONSIVO */
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 16px 56px;
+      }
+
+      .header-inner {
+        gap: 20px;
+      }
+
+      .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .brand-name {
+        font-size: 22px;
+      }
+
+      .hero-text h1 {
+        font-size: 22px;
+      }
+
+      .card {
+        padding: 20px 16px 10px;
+      }
+
+      table {
+        font-size: 13px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
 <header>
-  <!-- Language selector -->
-  <div class="lang-select">
-    🌎 <select id="langSelector">
-      <option value="pt">Português</option>
-      <option value="en">English</option>
-      <option value="es">Español</option>
-    </select>
-  </div>
+  <div class="header-inner">
+    <div class="top-bar">
+      <div class="brand">
+        <img src="logo.svg" alt="Logo Slim Up!">
+        <span class="brand-name">SlimUp!</span>
+      </div>
 
-  <!-- Logo -->
-  <div class="logo-wrap">
-    <img src="logo.svg" alt="Logo Slim Up!">
-  </div>
+      <div class="lang-select">
+        <span class="globe">🌎</span>
+        <select id="langSelector">
+          <option value="pt">🇧🇷 Português</option>
+          <option value="en">🇺🇸 English</option>
+          <option value="es">🇪🇸 Español</option>
+        </select>
+      </div>
+    </div>
 
-  <h1 id="title"></h1>
-  <p id="subtitle"></p>
+    <div class="hero-text">
+      <h1 id="title"></h1>
+      <p id="subtitle"></p>
+    </div>
+  </div>
 </header>
 
 <div class="wrapper">
@@ -142,31 +297,42 @@
       </tr>
 
       <tr>
-        <td>🇧🇷 Português</td>
+        <td class="lang-label">
+          <span class="lang-flag">🇧🇷</span>
+          <span>Português (Brasil)</span>
+        </td>
         <td><a href="privacy.html">privacy.html</a></td>
         <td><a href="terms.html">terms.html</a></td>
       </tr>
 
       <tr>
-        <td>🇺🇸 English</td>
+        <td class="lang-label">
+          <span class="lang-flag">🇺🇸</span>
+          <span>English</span>
+        </td>
         <td><a href="privacy-en.html">privacy-en.html</a></td>
         <td><a href="terms-en.html">terms-en.html</a></td>
       </tr>
 
       <tr>
-        <td>🇪🇸 Español</td>
+        <td class="lang-label">
+          <span class="lang-flag">🇪🇸</span>
+          <span>Español</span>
+        </td>
         <td><a href="privacy-es.html">privacy-es.html</a></td>
         <td><a href="terms-es.html">terms-es.html</a></td>
       </tr>
-
     </table>
 
-    <h2 id="section_about" style="margin-top: 24px;"></h2>
-    <p id="about_text"></p>
+    <div class="section">
+      <h2 id="section_about"></h2>
+      <p id="about_text"></p>
+    </div>
 
-    <h2 id="section_contact" style="margin-top: 24px;"></h2>
-    <p id="contact_text"></p>
-
+    <div class="section">
+      <h2 id="section_contact"></h2>
+      <p id="contact_text"></p>
+    </div>
   </div>
 </div>
 
@@ -245,8 +411,8 @@
   });
 
   const savedLang = localStorage.getItem("slimup_lang") || navigator.language.slice(0,2);
+  const lang = ["pt", "en", "es"].includes(savedLang) ? savedLang : "pt";
 
-  const lang = ["pt","en","es"].includes(savedLang) ? savedLang : "pt";
   selector.value = lang;
   applyLanguage(lang);
 </script>
