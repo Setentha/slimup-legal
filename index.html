@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,39 +38,36 @@
       padding: 32px 20px 72px;
       text-align: center;
       color: #ffffff;
+      position: relative;
     }
 
-    .logo-wrap {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-bottom: 16px;
-      gap: 12px;
+    /* Language Selector */
+    .lang-select {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(6px);
+      padding: 6px 12px;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    select {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 14px;
+      outline: none;
+      cursor: pointer;
     }
 
     .logo-wrap img {
       height: 56px;
       width: auto;
-      display: block;
     }
-
-    header h1 {
-      margin: 0;
-      font-size: 26px;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-    }
-
-   header p {
-  margin: 10px 0 0;
-  font-size: 15px;
-  max-width: 520px;
-  margin-left: auto;
-  margin-right: auto;
-  color: #ffffff;  /* 🔥 TEXTO BRANCO */
-  opacity: 1;      /* 🔥 sem transparência */
-}
-
 
     .wrapper {
       max-width: 960px;
@@ -81,21 +78,8 @@
     .card {
       background: #ffffff;
       border-radius: var(--card-radius);
+      padding: 24px;
       box-shadow: var(--shadow);
-      padding: 24px 24px 12px;
-    }
-
-    h2 {
-      margin-top: 0;
-      color: var(--primary);
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: var(--muted);
     }
 
     table {
@@ -108,45 +92,11 @@
     th, td {
       padding: 10px 12px;
       border-bottom: 1px solid #e5e7eb;
-      text-align: left;
     }
 
     th {
       background: var(--primary-soft);
       color: var(--primary);
-      font-weight: 700;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    .lang {
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .section {
-      margin-top: 24px;
-    }
-
-    .section ul {
-      padding-left: 18px;
-      margin-top: 8px;
-    }
-
-    .section li {
-      margin-bottom: 4px;
     }
 
     footer {
@@ -157,67 +107,149 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
+  <!-- Language selector -->
+  <div class="lang-select">
+    🌎 <select id="langSelector">
+      <option value="pt">Português</option>
+      <option value="en">English</option>
+      <option value="es">Español</option>
+    </select>
+  </div>
+
+  <!-- Logo -->
   <div class="logo-wrap">
     <img src="logo.svg" alt="Logo Slim Up!">
   </div>
-  <h1>Slim Up! — Documentos Legais</h1>
-  <p>Páginas oficiais de Política de Privacidade e Termos de Uso utilizadas pelo aplicativo Slim Up!.</p>
+
+  <h1 id="title"></h1>
+  <p id="subtitle"></p>
 </header>
 
 <div class="wrapper">
   <div class="card">
-    <h2>Documentos disponíveis</h2>
-    <p>Selecione abaixo o idioma desejado para acessar a Política de Privacidade e os Termos de Uso.</p>
+    <h2 id="section_docs"></h2>
+    <p id="docs_description"></p>
 
     <table>
       <tr>
-        <th>Idioma</th>
-        <th>Política de Privacidade</th>
-        <th>Termos de Uso</th>
+        <th id="th_lang"></th>
+        <th id="th_privacy"></th>
+        <th id="th_terms"></th>
       </tr>
+
       <tr>
-        <td class="lang">🇧🇷 Português (Brasil)</td>
+        <td>🇧🇷 Português</td>
         <td><a href="privacy.html">privacy.html</a></td>
         <td><a href="terms.html">terms.html</a></td>
       </tr>
+
       <tr>
-        <td class="lang">🇺🇸 English</td>
+        <td>🇺🇸 English</td>
         <td><a href="privacy-en.html">privacy-en.html</a></td>
         <td><a href="terms-en.html">terms-en.html</a></td>
       </tr>
+
       <tr>
-        <td class="lang">🇪🇸 Español</td>
+        <td>🇪🇸 Español</td>
         <td><a href="privacy-es.html">privacy-es.html</a></td>
         <td><a href="terms-es.html">terms-es.html</a></td>
       </tr>
+
     </table>
 
-    <div class="section">
-      <h2>Sobre o Slim Up!</h2>
-      <p>O Slim Up! é um aplicativo voltado ao bem-estar, ajudando o usuário a:</p>
-      <ul>
-        <li>Organizar a ingestão diária de líquidos;</li>
-        <li>Programar pausas para relaxamento;</li>
-        <li>Definir lembretes para exercícios físicos.</li>
-      </ul>
-    </div>
+    <h2 id="section_about" style="margin-top: 24px;"></h2>
+    <p id="about_text"></p>
 
-    <div class="section">
-      <h2>Contato</h2>
-      <p>
-        Dúvidas ou solicitações relacionadas aos documentos legais podem ser encaminhadas para:<br />
-        <strong>apps@setentha.com</strong>
-      </p>
-    </div>
+    <h2 id="section_contact" style="margin-top: 24px;"></h2>
+    <p id="contact_text"></p>
+
   </div>
 </div>
 
-<footer>
-  Slim Up! — © 2025 Setentha Technologies. Todos os direitos reservados.
-</footer>
+<footer id="footer"></footer>
+
+<script>
+  const texts = {
+    pt: {
+      title: "Slim Up! — Documentos Legais",
+      subtitle: "Páginas oficiais de Política de Privacidade e Termos de Uso utilizadas pelo aplicativo Slim Up!.",
+      docs: "Documentos disponíveis",
+      docs_description: "Selecione abaixo o idioma desejado para acessar a Política de Privacidade e os Termos de Uso.",
+      th_lang: "Idioma",
+      th_privacy: "Política de Privacidade",
+      th_terms: "Termos de Uso",
+      about: "Sobre o Slim Up!",
+      about_text: "O Slim Up! é um aplicativo voltado ao bem-estar, ajudando o usuário a organizar a ingestão diária de líquidos, programar pausas para relaxamento e definir lembretes para exercícios físicos.",
+      contact: "Contato",
+      contact_text: "Dúvidas ou solicitações relacionadas aos documentos legais podem ser encaminhadas para: apps@setentha.com",
+      footer: "Slim Up! — © 2025 Setentha Technologies. Todos os direitos reservados."
+    },
+
+    en: {
+      title: "Slim Up! — Legal Documents",
+      subtitle: "Official Privacy Policy and Terms of Use pages used by the Slim Up! application.",
+      docs: "Available Documents",
+      docs_description: "Select your preferred language below to access the Privacy Policy and Terms of Use.",
+      th_lang: "Language",
+      th_privacy: "Privacy Policy",
+      th_terms: "Terms of Use",
+      about: "About Slim Up!",
+      about_text: "Slim Up! is a wellness-focused application that helps users organize daily liquid intake, schedule relaxation breaks, and set exercise reminders.",
+      contact: "Contact",
+      contact_text: "Questions or legal document requests may be directed to: apps@setentha.com",
+      footer: "Slim Up! — © 2025 Setentha Technologies. All rights reserved."
+    },
+
+    es: {
+      title: "Slim Up! — Documentos Legales",
+      subtitle: "Páginas oficiales de Política de Privacidad y Términos de Uso utilizadas por la aplicación Slim Up!.",
+      docs: "Documentos disponibles",
+      docs_description: "Seleccione abajo el idioma deseado para acceder a la Política de Privacidad y los Términos de Uso.",
+      th_lang: "Idioma",
+      th_privacy: "Política de Privacidad",
+      th_terms: "Términos de Uso",
+      about: "Sobre Slim Up!",
+      about_text: "Slim Up! es una aplicación enfocada en el bienestar que ayuda al usuario a organizar la ingesta diaria de líquidos, programar pausas de relajación y definir recordatorios de ejercicios.",
+      contact: "Contacto",
+      contact_text: "Dudas o solicitudes relacionadas con documentos legales pueden enviarse a: apps@setentha.com",
+      footer: "Slim Up! — © 2025 Setentha Technologies. Todos los derechos reservados."
+    }
+  };
+
+  function applyLanguage(lang) {
+    const t = texts[lang];
+
+    document.getElementById("title").innerText = t.title;
+    document.getElementById("subtitle").innerText = t.subtitle;
+    document.getElementById("section_docs").innerText = t.docs;
+    document.getElementById("docs_description").innerText = t.docs_description;
+    document.getElementById("th_lang").innerText = t.th_lang;
+    document.getElementById("th_privacy").innerText = t.th_privacy;
+    document.getElementById("th_terms").innerText = t.th_terms;
+    document.getElementById("section_about").innerText = t.about;
+    document.getElementById("about_text").innerText = t.about_text;
+    document.getElementById("section_contact").innerText = t.contact;
+    document.getElementById("contact_text").innerText = t.contact_text;
+    document.getElementById("footer").innerText = t.footer;
+  }
+
+  const selector = document.getElementById("langSelector");
+
+  selector.addEventListener("change", () => {
+    applyLanguage(selector.value);
+    localStorage.setItem("slimup_lang", selector.value);
+  });
+
+  const savedLang = localStorage.getItem("slimup_lang") || navigator.language.slice(0,2);
+
+  const lang = ["pt","en","es"].includes(savedLang) ? savedLang : "pt";
+  selector.value = lang;
+  applyLanguage(lang);
+</script>
 
 </body>
 </html>
